@@ -1,0 +1,10 @@
+{
+    "require": {
+        "theodo-group/llphant": "^0.8.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
