@@ -4,7 +4,6 @@ require 'vendor/autoload.php';
 
 $config = new \LLPhant\OllamaConfig();
 $config->model = 'llama3.1:8b-instruct-q4_0';
-$chat = new \LLPhant\Chat\OllamaChat($config);
 
 class DemoTools
 {
@@ -35,6 +34,8 @@ $demoTools = new DemoTools();
 $tools = [];
 $tools[] = \LLPhant\Chat\FunctionInfo\FunctionBuilder::buildFunctionInfo($demoTools, 'getCurrentDate');
 $tools[] = \LLPhant\Chat\FunctionInfo\FunctionBuilder::buildFunctionInfo($demoTools, 'getUserDataByName');
+
+$chat = new \LLPhant\Chat\OllamaChat($config);
 $chat->setTools($tools);
 
 echo "-----------\n";
@@ -43,11 +44,8 @@ echo $chat->generateChat([
 ]);
 echo "\n\n";
 
-echo "-----------\n";
-echo $chat->generateChat([
-    \LLPhant\Chat\Message::user('What day will tomorrow be?'),
-]);
-echo "\n\n";
+$chat = new \LLPhant\Chat\OllamaChat($config);
+$chat->setTools($tools);
 
 echo "-----------\n";
 echo $chat->generateChat([
